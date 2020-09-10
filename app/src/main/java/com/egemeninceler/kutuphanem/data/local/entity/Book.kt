@@ -1,12 +1,16 @@
 package com.egemeninceler.kutuphanem.data.local.entity
 
+import android.net.Uri
+import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 @Entity(tableName = "book_table")
 data class Book(
-    @PrimaryKey val name: String
-    //,var image: ByteArray? = null
+    @PrimaryKey @ColumnInfo(name = "imageName") val name: String,
+    @ColumnInfo(name = "imagePath") var pathImage: Uri? = null
 
-)
+) : Parcelable

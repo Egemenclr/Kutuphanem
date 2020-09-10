@@ -9,16 +9,19 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.egemeninceler.kutuphanem.R
+import com.egemeninceler.kutuphanem.data.local.entity.Book
 import kotlinx.android.synthetic.main.activity_add_new_book.*
 
 class AddNewBookActivity : AppCompatActivity() {
     var selectedPicture: Uri? = null
     private val storageRequsetCode = 2
     private val requestCodeForResult = 3
+    private var IMAGE_URI: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_book)
@@ -40,7 +43,7 @@ class AddNewBookActivity : AppCompatActivity() {
                 startActivityForResult(intent, requestCodeForResult)
 
             }
-            finish()
+            //finish()
         }
 
         newBookSave.setOnClickListener {
@@ -49,8 +52,10 @@ class AddNewBookActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
                 val word = newBookName.text.toString()
-                replyIntent.putExtra(BOOK_NAME, word)
-                replyIntent.putExtra("imageUri",IMAGE_URI)
+                val book = Book(word, IMAGE_URI)
+                replyIntent.putExtra(BOOK_NAME, book)
+                //replyIntent.putExtra("imageUri", IMAGE_URI)
+                Log.e("AddNewBookActivity ", "$IMAGE_URI")
                 setResult(Activity.RESULT_OK, replyIntent)
             }
             finish()
@@ -59,7 +64,7 @@ class AddNewBookActivity : AppCompatActivity() {
 
     companion object {
         const val BOOK_NAME = "com.egemeninceler.kutuphanem.BOOKNAME"
-        var IMAGE_URI : Uri? = null
+
     }
 
     override fun onRequestPermissionsResult(

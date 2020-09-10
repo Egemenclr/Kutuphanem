@@ -1,11 +1,12 @@
 package com.egemeninceler.kutuphanem.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.egemeninceler.kutuphanem.R
+import com.egemeninceler.kutuphanem.data.local.entity.Book
 import kotlinx.android.synthetic.main.adapter_item_book.view.*
 
 
@@ -16,16 +17,15 @@ class BookFragmentViewHolder(container: ViewGroup) : RecyclerView.ViewHolder(
         false
     )
 ) {
-    fun bind(s: String) {
+    fun bind(book: Book) {
+        Log.e("ViewHolder", "${book.pathImage!!.path}")
         Glide.with(itemView.context)
-            .load("https://i.dr.com.tr/cache/500x400-0/originals/0000000246061-1.jpg")
+            .load(book.pathImage)
+            //.apply(RequestOptions().override(120, 120))
+            .centerCrop()
             .into(itemView.imgBook)
 
-
-
-        itemView.txtBookAdapter.text = s
-
-        //itemView.txtCategoryName.background = ContextCompat.getDrawable(itemView.context, model.background)
+        itemView.txtBookAdapter.text = book.name
     }
 
 

@@ -54,38 +54,14 @@ class BooksFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == requestCodeForResult && resultCode == Activity.RESULT_OK) {
-            data?.getStringExtra(AddNewBookActivity.BOOK_NAME).let {
-                val book = Book(it!!)
-                wordViewModel.insert(book)
+            data?.getParcelableExtra<Book>(AddNewBookActivity.BOOK_NAME).let {
+                val book = it
+
+                wordViewModel.insert(book!!)
             }
+
         } else {
             Toast.makeText(activity, "damnt", Toast.LENGTH_SHORT).show()
         }
     }
-
-
 }
-
-
-//        println(MockData.getBookList(20).size)
-
-
-/*
-val icon = ImageView(view.context)
-icon.setImageDrawable(ContextCompat.getDrawable(view.context, R.drawable.china))
-
-val layoutParams = FloatingActionButton.LayoutParams(100, 100, 17)
-val actionButton =
-    FloatingActionButton.Builder((activity as MainActivity)).setContentView(icon, layoutParams)
-        .build()
-
-val itemBuilder = SubActionButton.Builder((activity as MainActivity))
-
-val itemIcon1 = ImageView(view.context)
-itemIcon1.setImageDrawable(
-    ContextCompat.getDrawable(
-        view.context,
-        R.drawable.add_button
-    )
-)
- */

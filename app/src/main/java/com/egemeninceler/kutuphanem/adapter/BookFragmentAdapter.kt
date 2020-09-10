@@ -13,7 +13,7 @@ class BookFragmentAdapter(private val bookList: ArrayList<Book>) :
     override fun getItemCount(): Int = bookList.size
 
     override fun onBindViewHolder(holder: BookFragmentViewHolder, position: Int) {
-        holder.bind(bookList[position].name)
+        holder.bind(bookList[position])
     }
 
     fun setValues(books : List<Book>){
