@@ -13,6 +13,9 @@ interface BookDao {
     fun getAllBook(): LiveData<List<Book>>
     // suspend olmamasının sebebi ayrı thread'de değil direkt olarak görmemiz gerektiği için.
 
+    @Query("SELECT * FROM book_table WHERE uuid =:uid")
+    fun getBook(uid: Int): Book
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(book: Book)
 

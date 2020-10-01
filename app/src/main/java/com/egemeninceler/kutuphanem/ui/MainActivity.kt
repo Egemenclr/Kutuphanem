@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mainPager.adapter = MainPagerAdapter(supportFragmentManager, getFragmentList())
+
         tabNavBar.setupWithViewPager(mainPager)
 
     }

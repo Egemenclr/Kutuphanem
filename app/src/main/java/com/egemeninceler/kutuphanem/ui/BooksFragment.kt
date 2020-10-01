@@ -20,7 +20,13 @@ import kotlinx.android.synthetic.main.fragment_books.*
 
 class BooksFragment : Fragment() {
 
-    private val adapter = BookFragmentAdapter(arrayListOf())
+    private val adapter = BookFragmentAdapter(arrayListOf()) {
+        val intent = Intent(activity, AddNewBookActivity::class.java)
+        intent.putExtra("unuqueid", it.uuid)
+        //intent.putExtra("where","old")
+        Thread.sleep(250L)
+        startActivity(intent)
+    }
     private val requestCodeForResult = 1
     private lateinit var wordViewModel: BookViewModel
     override fun onCreateView(
@@ -38,6 +44,7 @@ class BooksFragment : Fragment() {
         recyclerBook.adapter = adapter
 
 
+
         wordViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
         wordViewModel.allBooks.observe(viewLifecycleOwner, Observer { books ->
             books?.let {
@@ -47,6 +54,7 @@ class BooksFragment : Fragment() {
 
         addNewBook.setOnClickListener {
             val intent = Intent(activity, AddNewBookActivity::class.java)
+            //intent.putExtra("where","new")
             startActivityForResult(intent, requestCodeForResult)
         }
     }

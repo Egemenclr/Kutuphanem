@@ -6,11 +6,7 @@ enum class FragmentName {
             return "Kütüphanem"
         }
     },
-    KITAP_BUL {
-        override fun toString(): String {
-            return "Kitap Bul"
-        }
-    },
+
     RAHATLATICI_SESLER {
         override fun toString(): String {
             return "Rahatlatıcı Sesler"

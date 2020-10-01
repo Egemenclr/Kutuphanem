@@ -1,6 +1,7 @@
 package com.egemeninceler.kutuphanem.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -16,12 +17,17 @@ class BookViewModel(application: Application) : AndroidViewModel(application) {
     val allBooks: LiveData<List<Book>>
 
     init {
-        val dao = BookRoomDatabase.getDatabase(getApplication(), viewModelScope).bookDao()
+        val dao = BookRoomDatabase.getDatabase(getApplication()).bookDao()
         repository = BookRepository(dao)
         allBooks = repository.allBooks
     }
 
     fun insert(book: Book) = viewModelScope.launch(Dispatchers.IO) {
+        Log.e("ViewModel", "${book.uuid}")
+
         repository.insert(book)
     }
+
+    fun getBook(uuid: Int)  = repository.getBook(uuid)
+
 }

@@ -22,11 +22,17 @@
             android:padding="8dp"
             android:maxHeight="200dp"
             android:maxWidth="200dp"
-            android:adjustViewBounds="true"
-            />
+            android:adjustViewBounds="true" />
 
         <EditText
             android:id="@+id/newBookName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title..."
+            android:padding="16dp" />
+
+        <EditText
+            android:id="@+id/newBookTittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name..."

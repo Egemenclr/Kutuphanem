@@ -5,7 +5,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.egemeninceler.kutuphanem.model.FragmentModel
 
-class MainPagerAdapter(fragmentManager: FragmentManager, private val fragmentList: List<FragmentModel>) :
+class MainPagerAdapter(
+    fragmentManager: FragmentManager,
+    private val fragmentList: List<FragmentModel>
+) :
     FragmentStatePagerAdapter(
         fragmentManager,
         BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT

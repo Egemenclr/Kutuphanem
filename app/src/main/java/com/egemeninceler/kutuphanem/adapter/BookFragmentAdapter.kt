@@ -4,7 +4,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.egemeninceler.kutuphanem.data.local.entity.Book
 
-class BookFragmentAdapter(private val bookList: ArrayList<Book>) :
+class BookFragmentAdapter(
+    private val bookList: ArrayList<Book>,
+    private val setOnClickListener: (book: Book) -> Unit
+) :
     RecyclerView.Adapter<BookFragmentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookFragmentViewHolder {
         return BookFragmentViewHolder(parent)
@@ -13,10 +16,10 @@ class BookFragmentAdapter(private val bookList: ArrayList<Book>) :
     override fun getItemCount(): Int = bookList.size
 
     override fun onBindViewHolder(holder: BookFragmentViewHolder, position: Int) {
-        holder.bind(bookList[position])
+        holder.bind(bookList[position], setOnClickListener)
     }
 
-    fun setValues(books : List<Book>){
+    fun setValues(books: List<Book>) {
         bookList.clear()
         bookList.addAll(books)
         notifyDataSetChanged()

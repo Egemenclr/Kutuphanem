@@ -17,7 +17,7 @@ class BookFragmentViewHolder(container: ViewGroup) : RecyclerView.ViewHolder(
         false
     )
 ) {
-    fun bind(book: Book) {
+    fun bind(book: Book, setOnClickListener: (book: Book) -> Unit) {
         Log.e("ViewHolder", "${book.pathImage!!.path}")
         Glide.with(itemView.context)
             .load(book.pathImage)
@@ -26,6 +26,10 @@ class BookFragmentViewHolder(container: ViewGroup) : RecyclerView.ViewHolder(
             .into(itemView.imgBook)
 
         itemView.txtBookAdapter.text = book.name
+
+        itemView.setOnClickListener {
+            setOnClickListener(book)
+        }
     }
 
 

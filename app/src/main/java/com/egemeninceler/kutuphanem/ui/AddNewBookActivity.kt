@@ -1,5 +1,6 @@
 package com.egemeninceler.kutuphanem.ui
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -13,18 +14,38 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.egemeninceler.kutuphanem.R
+import com.egemeninceler.kutuphanem.data.local.db.BookRoomDatabase
 import com.egemeninceler.kutuphanem.data.local.entity.Book
+import com.egemeninceler.kutuphanem.viewModel.BookViewModel
 import kotlinx.android.synthetic.main.activity_add_new_book.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class AddNewBookActivity : AppCompatActivity() {
-    var selectedPicture: Uri? = null
+    //var selectedPicture: Uri? = null
     private val storageRequsetCode = 2
     private val requestCodeForResult = 3
     private var IMAGE_URI: Uri? = null
+    lateinit var bookViewModel: BookViewModel
+    var abc: Book? = null
+
+    @SuppressLint("WrongThread")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_book)
+
+        val dao = BookRoomDatabase.getDatabase(getApplication()).bookDao()
+
+        bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+        val bookID = intent.getIntExtra("unuqueid", -1)
+        if (bookID != -1) {
+            GlobalScope.launch {
+                abc = bookViewModel.getBook(bookID)
+                IMAGE_URI = abc!!.pathImage
+            }
+        }
 
         newBookImg.setOnClickListener {
             if (ContextCompat.checkSelfPermission(
@@ -62,8 +83,29 @@ class AddNewBookActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        if (IMAGE_URI != null) {
+            if (Build.VERSION.SDK_INT >= 28) {
+                val source = ImageDecoder.createSource(contentResolver, IMAGE_URI!!)
+                val bitmap = ImageDecoder.decodeBitmap(source)
+                newBookImg.setImageBitmap(bitmap)
+            } else {
+                val bitmap =
+                    MediaStore.Images.Media.getBitmap(contentResolver, IMAGE_URI)
+                newBookImg.setImageBitmap(bitmap)
+            }
+
+        } else {
+            println()
+        }
+
+        newBookName.hint = abc!!.name
+    }
+
     companion object {
         const val BOOK_NAME = "com.egemeninceler.kutuphanem.BOOKNAME"
+
 
     }
 
@@ -84,16 +126,16 @@ class AddNewBookActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == requestCodeForResult && resultCode == Activity.RESULT_OK && data != null) {
-            selectedPicture = data.data
+            //selectedPicture = data.data
             IMAGE_URI = data.data
-            if (selectedPicture != null) {
+            if (IMAGE_URI != null) {
                 if (Build.VERSION.SDK_INT >= 28) {
-                    val source = ImageDecoder.createSource(this.contentResolver, selectedPicture!!)
+                    val source = ImageDecoder.createSource(this.contentResolver, IMAGE_URI!!)
                     val bitmap = ImageDecoder.decodeBitmap(source)
                     newBookImg.setImageBitmap(bitmap)
                 } else {
                     val bitmap =
-                        MediaStore.Images.Media.getBitmap(this.contentResolver, selectedPicture)
+                        MediaStore.Images.Media.getBitmap(this.contentResolver, IMAGE_URI)
                     newBookImg.setImageBitmap(bitmap)
                 }
             }
