@@ -78,7 +78,7 @@ class AddNewBookActivity : AppCompatActivity() {
                 newBook.pathImage = IMAGE_URI
                 GlobalScope.launch {
                     if ((newBook.name != oldBook!!.name) && (newBook.pathImage != oldBook!!.pathImage))
-                        bookViewModel.updateBook(newBook.name, newBook!!.pathImage!!, bookID)
+                        bookViewModel.updateBook(newBook.name, newBook.pathImage!!, bookID)
                     else if (newBook.name != oldBook!!.name)
                         bookViewModel.updateBook(newBook.name, oldBook!!.pathImage!!, bookID)
                     else if (newBook.pathImage!! != oldBook!!.pathImage)
@@ -110,6 +110,7 @@ class AddNewBookActivity : AppCompatActivity() {
     companion object {
         const val BOOK_NAME = "com.egemeninceler.kutuphanem.BOOKNAME"
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,

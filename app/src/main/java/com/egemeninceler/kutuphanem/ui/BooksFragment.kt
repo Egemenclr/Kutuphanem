@@ -20,13 +20,17 @@ import kotlinx.android.synthetic.main.fragment_books.*
 
 class BooksFragment : Fragment() {
 
-    private val adapter = BookFragmentAdapter(arrayListOf()) {
+    private val adapter = BookFragmentAdapter(arrayListOf(), {
         val intent = Intent(activity, AddNewBookActivity::class.java)
         intent.putExtra("unuqueid", it.uuid)
         //intent.putExtra("where","old")
-        Thread.sleep(250L)
+        Thread.sleep(600L)
         startActivity(intent)
-    }
+    },{
+        Toast.makeText(context,"Hellllü" , Toast.LENGTH_SHORT).show()
+        println("helü")
+
+    })
     private val requestCodeForResult = 1
     private lateinit var wordViewModel: BookViewModel
     override fun onCreateView(
