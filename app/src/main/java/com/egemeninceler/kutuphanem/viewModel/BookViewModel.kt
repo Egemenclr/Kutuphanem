@@ -1,6 +1,7 @@
 package com.egemeninceler.kutuphanem.viewModel
 
 import android.app.Application
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -28,6 +29,12 @@ class BookViewModel(application: Application) : AndroidViewModel(application) {
         repository.insert(book)
     }
 
-    fun getBook(uuid: Int)  = repository.getBook(uuid)
+    fun getBook(uuid: Int): Book {
+        Log.e("ViewModel","$uuid")
+        return repository.getBook(uuid)
+    }
+
+    suspend fun updateBook(imageName: String, imagePath: Uri, uuid: Int) =
+        repository.updateBook(imageName, imagePath, uuid)
 
 }

@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "book_table")
 data class Book(
-    @ColumnInfo(name = "imageName") val name: String,
+    @ColumnInfo(name = "imageName") var name: String,
     @ColumnInfo(name = "imagePath") var pathImage: Uri? = null
 
 ) : Parcelable {
