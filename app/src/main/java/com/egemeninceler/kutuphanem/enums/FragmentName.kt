@@ -9,7 +9,7 @@ enum class FragmentName {
 
     RAHATLATICI_SESLER {
         override fun toString(): String {
-            return "Rahatlatıcı Sesler"
+            return "Muzik"
         }
     }
 }

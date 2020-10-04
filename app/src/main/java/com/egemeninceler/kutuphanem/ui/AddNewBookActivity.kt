@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -36,6 +37,7 @@ class AddNewBookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_book)
 
+        Thread.sleep(500L)
         bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
 
 
@@ -43,7 +45,7 @@ class AddNewBookActivity : AppCompatActivity() {
         if (bookID != -1) {
             GlobalScope.launch {
                 oldBook = bookViewModel.getBook(bookID)
-                Log.e("globalscope", "${oldBook?.name}")
+                Log.e("globalscope", "${oldBook?.name}, ${oldBook?.pathImage}")
                 IMAGE_URI = oldBook!!.pathImage
             }
         }
@@ -103,7 +105,7 @@ class AddNewBookActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
+        Thread.sleep(500L)
         change()
     }
 

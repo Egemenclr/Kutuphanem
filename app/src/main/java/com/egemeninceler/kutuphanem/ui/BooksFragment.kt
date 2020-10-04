@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.egemeninceler.kutuphanem.R
 import com.egemeninceler.kutuphanem.adapter.BookFragmentAdapter
 import com.egemeninceler.kutuphanem.data.local.entity.Book
@@ -24,8 +25,8 @@ class BooksFragment : Fragment() {
         val intent = Intent(activity, AddNewBookActivity::class.java)
         intent.putExtra("unuqueid", it.uuid)
         //intent.putExtra("where","old")
-        Thread.sleep(600L)
         startActivity(intent)
+
     },{
         Toast.makeText(context,"Hellllü" , Toast.LENGTH_SHORT).show()
         println("helü")
@@ -44,9 +45,11 @@ class BooksFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recyclerBook.layoutManager = GridLayoutManager(view.context, 3)
+        //recyclerBook.layoutManager = GridLayoutManager(view.context, 3)
+        StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL).apply {
+            recyclerBook.layoutManager = this
+        }
         recyclerBook.adapter = adapter
-
 
 
         wordViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
