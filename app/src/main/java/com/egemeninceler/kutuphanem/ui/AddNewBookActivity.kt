@@ -151,6 +151,7 @@ class AddNewBookActivity : AppCompatActivity() {
 
     fun change() {
         if (IMAGE_URI != null) {
+
             if (Build.VERSION.SDK_INT >= 28) {
                 val source = ImageDecoder.createSource(contentResolver, IMAGE_URI!!)
                 val bitmap = ImageDecoder.decodeBitmap(source)

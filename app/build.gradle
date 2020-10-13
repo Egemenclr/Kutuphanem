@@ -60,4 +60,9 @@ dependencies {
 
 // Material design
     implementation "com.google.android.material:material:$rootProject.materialVersion"
+
+
+
+    implementation "androidx.cardview:cardview:1.0.0"
+
 }

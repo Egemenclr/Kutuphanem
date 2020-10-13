@@ -10,11 +10,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.egemeninceler.kutuphanem.R
 import com.egemeninceler.kutuphanem.adapter.BookFragmentAdapter
 import com.egemeninceler.kutuphanem.data.local.entity.Book
+
 import com.egemeninceler.kutuphanem.viewModel.BookViewModel
 import kotlinx.android.synthetic.main.fragment_books.*
 
@@ -27,9 +27,13 @@ class BooksFragment : Fragment() {
         //intent.putExtra("where","old")
         startActivity(intent)
 
-    },{
-        Toast.makeText(context,"Hellllü" , Toast.LENGTH_SHORT).show()
-        println("helü")
+    }, {
+        Toast.makeText(context, "Hellllü", Toast.LENGTH_SHORT).show()
+
+
+        val popUpClass = PopUpClass()
+        popUpClass.showPopUpWindow(view!!)
+
 
     })
     private val requestCodeForResult = 1
@@ -46,7 +50,7 @@ class BooksFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //recyclerBook.layoutManager = GridLayoutManager(view.context, 3)
-        StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL).apply {
+        StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL).apply {
             recyclerBook.layoutManager = this
         }
         recyclerBook.adapter = adapter
