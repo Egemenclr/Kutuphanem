@@ -30,11 +30,15 @@ class BookViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getBook(uuid: Int): Book {
-        Log.e("ViewModel","$uuid")
+        Log.e("ViewModel", "$uuid")
         return repository.getBook(uuid)
     }
 
     suspend fun updateBook(imageName: String, imagePath: Uri, uuid: Int) =
         repository.updateBook(imageName, imagePath, uuid)
+
+    suspend fun deleteBook(uuid: Int) {
+        repository.deleteBook(uuid)
+    }
 
 }

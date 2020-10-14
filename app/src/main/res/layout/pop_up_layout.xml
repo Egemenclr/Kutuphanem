@@ -36,13 +36,13 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/messageButton"
+                    android:id="@+id/popUpDismiss"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="hayır" />
 
                 <Button
-                    android:id="@+id/messageButton2"
+                    android:id="@+id/popUpDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="evet" />

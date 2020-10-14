@@ -32,7 +32,7 @@ class BooksFragment : Fragment() {
 
 
         val popUpClass = PopUpClass()
-        popUpClass.showPopUpWindow(view!!)
+        popUpClass.showPopUpWindow(view!!, it.uuid, this)
 
 
     })

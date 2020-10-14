@@ -23,6 +23,9 @@ interface BookDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(book: Book)
 
-    @Query("DELETE FROM book_table")
+    @Query("DELETE FROM book_table ")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM book_table WHERE uuid=:uuid")
+    suspend fun deleteBook(uuid: Int)
 }

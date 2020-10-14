@@ -5,32 +5,43 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.PopupWindow
-import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import com.egemeninceler.kutuphanem.R
+import com.egemeninceler.kutuphanem.viewModel.BookViewModel
 import kotlinx.android.synthetic.main.pop_up_layout.view.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class PopUpClass {
 
+    private lateinit var wordViewModel: BookViewModel
+    fun showPopUpWindow(view: View, uuid: Int, owner: ViewModelStoreOwner) {
 
-    fun showPopUpWindow(view: View) {
-
-        val view = LayoutInflater.from(view.context).inflate(R.layout.pop_up_layout, null)
+        wordViewModel = ViewModelProvider(owner).get(BookViewModel::class.java)
+        val viewPopUp = LayoutInflater.from(view.context).inflate(R.layout.pop_up_layout, null)
 
         val focusable = true
 
         val popupWindow = PopupWindow(
-            view,
+            viewPopUp,
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.MATCH_PARENT,
             focusable
         )
 
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
+        popupWindow.showAtLocation(viewPopUp, Gravity.CENTER, 0, 0)
 
-        val test1 = view.findViewById<TextView>(R.id.titleText)
-
-        view.messageButton.setOnClickListener {
+        viewPopUp.popUpDismiss.setOnClickListener {
             popupWindow.dismiss()
+        }
+        viewPopUp.popUpDelete.setOnClickListener {
+            GlobalScope.launch {
+                wordViewModel.deleteBook(uuid)
+
+            }
+            popupWindow.dismiss()
+
         }
     }
 

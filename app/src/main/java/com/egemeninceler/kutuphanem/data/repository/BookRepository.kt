@@ -17,4 +17,8 @@ class BookRepository(private val bookDao: BookDao) {
 
     suspend fun updateBook(imageName: String, imagePath: Uri, uuid: Int) =
         bookDao.updateBook(imageName, imagePath, uuid)
+
+    suspend fun deleteBook(uuid: Int) {
+        bookDao.deleteBook(uuid)
+    }
 }
