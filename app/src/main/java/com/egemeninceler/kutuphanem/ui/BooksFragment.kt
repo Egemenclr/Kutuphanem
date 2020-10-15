@@ -63,13 +63,18 @@ class BooksFragment : Fragment() {
             }
         })
 
+        val MIN_INTERVAL = 1000
+        var lastEventTime = System.currentTimeMillis()
         addNewBook.setOnClickListener {
             val intent = Intent(activity, AddNewBookActivity::class.java)
             //intent.putExtra("where","new")
-            it.isEnabled = false
-            startActivityForResult(intent, requestCodeForResult)
-            if(!it.isClickable){
-                it.isEnabled = true
+
+
+            val eventTime = System.currentTimeMillis()
+            if (eventTime - lastEventTime > MIN_INTERVAL) {
+                lastEventTime = eventTime
+                startActivityForResult(intent, requestCodeForResult)
+
             }
         }
     }

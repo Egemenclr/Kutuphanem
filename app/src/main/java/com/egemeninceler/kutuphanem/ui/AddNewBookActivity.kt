@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -37,7 +36,7 @@ class AddNewBookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_book)
 
-        Thread.sleep(500L)
+//        Thread.sleep(500L)
         bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
 
 
@@ -150,7 +149,7 @@ class AddNewBookActivity : AppCompatActivity() {
     }
 
     fun change() {
-        if (IMAGE_URI != null) {
+        if (IMAGE_URI != null && IMAGE_URI!= Uri.parse("")) {
 
             if (Build.VERSION.SDK_INT >= 28) {
                 val source = ImageDecoder.createSource(contentResolver, IMAGE_URI!!)

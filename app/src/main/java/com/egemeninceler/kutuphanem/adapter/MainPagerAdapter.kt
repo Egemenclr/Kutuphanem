@@ -25,4 +25,5 @@ class MainPagerAdapter(
         return fragmentList[position].title
     }
 
+
 }

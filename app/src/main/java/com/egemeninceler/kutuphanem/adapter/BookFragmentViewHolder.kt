@@ -30,14 +30,17 @@ class BookFragmentViewHolder(container: ViewGroup) : RecyclerView.ViewHolder(
             .into(itemView.imgBook)
 
         itemView.txtBookAdapter.text = book.name
-
+        val MIN_INTERVAL = 1000
+        var lastEventTime = System.currentTimeMillis()
         itemView.setOnClickListener {
-            setOnClickListener(book).apply {
-                it.isEnabled = false
+
+            val eventTime = System.currentTimeMillis()
+            if (eventTime - lastEventTime > MIN_INTERVAL) {
+                lastEventTime = eventTime
+                setOnClickListener(book)
             }
-            if (!(it.isClickable)) {
-                it.isEnabled = true
-            }
+
+
         }
 
         itemView.setOnLongClickListener {

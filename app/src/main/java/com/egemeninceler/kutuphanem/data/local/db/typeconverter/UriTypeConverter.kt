@@ -7,7 +7,7 @@ import androidx.room.TypeConverter
 class UriTypeConverter {
     @TypeConverter
     fun uriToString(uri: Uri?): String {
-        return uri?.toString() ?: "uriTypeError"
+        return uri?.toString() ?: ""
     }
 
 
