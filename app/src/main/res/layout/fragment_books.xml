@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:contentDescription="add book"
-        android:backgroundTint="#6E6B75"
-        android:src="@drawable/ic_book_add" />
+        android:backgroundTint="@android:color/darker_gray"
+        android:src="@drawable/add_item_button" />
 </FrameLayout>

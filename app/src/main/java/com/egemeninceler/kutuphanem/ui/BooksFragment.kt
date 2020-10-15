@@ -66,7 +66,11 @@ class BooksFragment : Fragment() {
         addNewBook.setOnClickListener {
             val intent = Intent(activity, AddNewBookActivity::class.java)
             //intent.putExtra("where","new")
+            it.isEnabled = false
             startActivityForResult(intent, requestCodeForResult)
+            if(!it.isClickable){
+                it.isEnabled = true
+            }
         }
     }
 

@@ -32,10 +32,13 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabNavBar"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:tabMode="auto"
-            app:tabSelectedTextColor="@color/colorAccent" />
+            app:tabSelectedTextColor="@color/colorAccent"
+            android:layout_gravity="center"
+            />
+
     </com.google.android.material.appbar.AppBarLayout>
 
 

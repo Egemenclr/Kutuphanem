@@ -15,6 +15,13 @@ class MainActivity : AppCompatActivity() {
         mainPager.adapter = MainPagerAdapter(supportFragmentManager, getFragmentList())
 
         tabNavBar.setupWithViewPager(mainPager)
+        val fragmentList = mutableListOf<Int>(R.drawable.ic_fragment_book,R.drawable.ic_fragment_music)
+
+        for (i in fragmentList){
+            tabNavBar.getTabAt(fragmentList.indexOf(i))!!.setIcon(i)
+
+        }
+
 
     }
 }

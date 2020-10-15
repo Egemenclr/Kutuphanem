@@ -32,7 +32,12 @@ class BookFragmentViewHolder(container: ViewGroup) : RecyclerView.ViewHolder(
         itemView.txtBookAdapter.text = book.name
 
         itemView.setOnClickListener {
-            setOnClickListener(book)
+            setOnClickListener(book).apply {
+                it.isEnabled = false
+            }
+            if (!(it.isClickable)) {
+                it.isEnabled = true
+            }
         }
 
         itemView.setOnLongClickListener {
