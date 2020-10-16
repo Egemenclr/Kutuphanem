@@ -25,6 +25,7 @@ class BooksFragment : Fragment() {
         val intent = Intent(activity, AddNewBookActivity::class.java)
         intent.putExtra("unuqueid", it.uuid)
         //intent.putExtra("where","old")
+
         startActivity(intent)
 
     }, {
@@ -51,7 +52,9 @@ class BooksFragment : Fragment() {
 
         //recyclerBook.layoutManager = GridLayoutManager(view.context, 3)
         StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL).apply {
+
             recyclerBook.layoutManager = this
+
         }
         recyclerBook.adapter = adapter
 

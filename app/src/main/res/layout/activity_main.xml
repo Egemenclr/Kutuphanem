@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivity"
+    android:orientation="vertical"
 
-    android:orientation="vertical">
+    tools:context=".ui.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/appBarLayout">
+        android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme">
+
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -34,10 +35,9 @@
             android:id="@+id/tabNavBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:tabMode="auto"
-            app:tabSelectedTextColor="@color/colorAccent"
             android:layout_gravity="center"
-            />
+            app:tabMode="auto"
+            app:tabSelectedTextColor="@color/colorAccent" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
