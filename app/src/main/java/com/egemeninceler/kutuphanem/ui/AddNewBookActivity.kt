@@ -11,6 +11,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.util.Log
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -33,8 +35,16 @@ class AddNewBookActivity : AppCompatActivity() {
 
     @SuppressLint("WrongThread")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_book)
+
+        val textView = findViewById<AutoCompleteTextView>(R.id.newBookName)
+        val countries: Array<out String> = resources.getStringArray(R.array.countries_array)
+
+        ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, countries).also { adapter ->
+            textView.setAdapter(adapter)
+        }
 
 //        Thread.sleep(500L)
         bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
