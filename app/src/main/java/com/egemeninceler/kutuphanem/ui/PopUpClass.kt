@@ -19,18 +19,15 @@ class PopUpClass {
     fun showPopUpWindow(view: View, uuid: Int, owner: ViewModelStoreOwner) {
 
         wordViewModel = ViewModelProvider(owner).get(BookViewModel::class.java)
+
         val viewPopUp = LayoutInflater.from(view.context).inflate(R.layout.pop_up_layout, null)
-
-        val focusable = true
-
         val popupWindow = PopupWindow(
             viewPopUp,
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            focusable
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            true
         )
 
-        popupWindow.showAtLocation(viewPopUp, Gravity.CENTER, 0, 0)
 
         viewPopUp.popUpDismiss.setOnClickListener {
             popupWindow.dismiss()
@@ -43,7 +40,8 @@ class PopUpClass {
             popupWindow.dismiss()
 
         }
+
+        popupWindow.showAtLocation(viewPopUp, Gravity.CENTER, 0, 0)
+
     }
-
-
 }

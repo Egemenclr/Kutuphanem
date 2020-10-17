@@ -5,7 +5,9 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:paddingRight="10dp"
+    android:focusable="true"
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

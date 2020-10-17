@@ -9,7 +9,6 @@ import com.egemeninceler.kutuphanem.adapter.MainPagerAdapter
 import com.egemeninceler.kutuphanem.util.getFragmentList
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
