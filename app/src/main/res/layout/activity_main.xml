@@ -22,13 +22,22 @@
 
 
             <ImageView
+                android:id="@+id/logo_toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/kutuphanem_logo">
 
             </ImageView>
+            <EditText
+                android:id="@+id/edittext_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint = "text"
+                android:visibility="gone"
+                android:animateLayoutChanges="true"
+                >
 
-
+            </EditText>
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout

@@ -36,7 +36,6 @@ class BooksFragment : Fragment() {
         popUpClass.showPopUpWindow(view!!, it.uuid, this)
 
 
-
     })
     private val requestCodeForResult = 1
     private lateinit var wordViewModel: BookViewModel

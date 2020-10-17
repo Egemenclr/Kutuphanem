@@ -15,14 +15,21 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [host:"goodreads", scheme:"oauth"]
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+
         }
     }
+
+
+
 }
 
 dependencies {
@@ -64,5 +71,6 @@ dependencies {
 
 
     implementation "androidx.cardview:cardview:1.0.0"
+    
 
 }
