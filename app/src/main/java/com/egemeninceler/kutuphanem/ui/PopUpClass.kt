@@ -3,6 +3,7 @@ package com.egemeninceler.kutuphanem.ui
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.pop_up_layout.view.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+
 class PopUpClass {
 
     private lateinit var wordViewModel: BookViewModel
@@ -21,12 +23,14 @@ class PopUpClass {
         wordViewModel = ViewModelProvider(owner).get(BookViewModel::class.java)
 
         val viewPopUp = LayoutInflater.from(view.context).inflate(R.layout.pop_up_layout, null)
+
         val popupWindow = PopupWindow(
             viewPopUp,
             LinearLayout.LayoutParams.WRAP_CONTENT,
             LinearLayout.LayoutParams.WRAP_CONTENT,
             true
         )
+        popupWindow.animationStyle = R.style.Animation
 
 
         viewPopUp.popUpDismiss.setOnClickListener {
@@ -40,6 +44,7 @@ class PopUpClass {
             popupWindow.dismiss()
 
         }
+
 
         popupWindow.showAtLocation(viewPopUp, Gravity.CENTER, 0, 0)
 
