@@ -18,7 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme">
+            android:theme="?attr/actionBarTheme"
+            >
+
 
 
             <ImageView
@@ -28,7 +30,7 @@
                 android:background="@drawable/kutuphanem_logo">
 
             </ImageView>
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/edittext_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,7 +39,7 @@
                 android:animateLayoutChanges="true"
                 >
 
-            </EditText>
+            </AutoCompleteTextView>
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout

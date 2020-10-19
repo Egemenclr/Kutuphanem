@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.egemeninceler.kutuphanem.R
 import com.egemeninceler.kutuphanem.adapter.BookFragmentAdapter
 import com.egemeninceler.kutuphanem.data.local.entity.Book
-
 import com.egemeninceler.kutuphanem.viewModel.BookViewModel
 import kotlinx.android.synthetic.main.fragment_books.*
 
