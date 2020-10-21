@@ -3,14 +3,20 @@ package com.egemeninceler.kutuphanem.ui
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import androidx.transition.Slide
+import androidx.transition.Transition
+import androidx.transition.TransitionManager
 import com.egemeninceler.kutuphanem.R
 import com.egemeninceler.kutuphanem.adapter.BookFragmentAdapter
 import com.egemeninceler.kutuphanem.data.local.entity.Book
@@ -47,11 +53,10 @@ class BooksFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
+        super.onViewCreated(view, savedInstanceState)
         //recyclerBook.layoutManager = GridLayoutManager(view.context, 3)
         StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL).apply {
-
             recyclerBook.layoutManager = this
 
         }
@@ -62,8 +67,10 @@ class BooksFragment : Fragment() {
         wordViewModel.allBooks.observe(viewLifecycleOwner, Observer { books ->
             books?.let {
                 adapter.setValues(it)
+
             }
         })
+
 
         val MIN_INTERVAL = 1000
         var lastEventTime = System.currentTimeMillis()
@@ -94,4 +101,38 @@ class BooksFragment : Fragment() {
             Toast.makeText(activity, "damnt", Toast.LENGTH_SHORT).show()
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        book_searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+
+        })
+        recyclerBook.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val transition: Transition = Slide(Gravity.BOTTOM)
+                TransitionManager.beginDelayedTransition(book_searchView, transition)
+
+                if (dy > 0) {
+                    book_searchView.visibility = View.VISIBLE
+                    println("---- $dy")
+
+                } else {
+                    if (dy == 0) return
+                    else book_searchView.visibility = View.GONE
+
+                }
+            }
+        })
+    }
+
+
 }

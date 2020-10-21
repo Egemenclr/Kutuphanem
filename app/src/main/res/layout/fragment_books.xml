@@ -7,6 +7,8 @@
     tools:context=".ui.BooksFragment">
 
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerBook"
         android:layout_width="match_parent"
@@ -23,4 +25,16 @@
         android:backgroundTint="@android:color/darker_gray"
         android:contentDescription="add book"
         android:src="@drawable/add_item_button" />
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/book_searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/action_button_size"
+        android:layout_marginBottom="@dimen/big_padding"
+        android:visibility="gone"
+        android:background="@color/colorPrimary"
+        />
+
 </FrameLayout>

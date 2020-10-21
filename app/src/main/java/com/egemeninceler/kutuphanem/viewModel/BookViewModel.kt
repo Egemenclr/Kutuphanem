@@ -21,6 +21,10 @@ class BookViewModel(application: Application) : AndroidViewModel(application) {
         val dao = BookRoomDatabase.getDatabase(getApplication()).bookDao()
         repository = BookRepository(dao)
         allBooks = repository.allBooks
+
+        filteredBooks = allBooks
+
+
     }
 
     fun insert(book: Book) = viewModelScope.launch(Dispatchers.IO) {

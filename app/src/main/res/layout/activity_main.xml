@@ -17,29 +17,33 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            >
+            android:theme="?attr/actionBarTheme">
 
 
-
-            <ImageView
-                android:id="@+id/logo_toolbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/kutuphanem_logo">
-
-            </ImageView>
-            <AutoCompleteTextView
-                android:id="@+id/edittext_toolbar"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint = "text"
-                android:visibility="gone"
-                android:animateLayoutChanges="true"
-                >
+                android:layout_height="match_parent">
 
-            </AutoCompleteTextView>
+                <ImageView
+                    android:id="@+id/logo_toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/kutuphanem_logo" />
+
+<!--                <androidx.appcompat.widget.SearchView-->
+<!--                    android:id="@+id/searchView_toolbar"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="end"-->
+<!--                    android:animateLayoutChanges="true"-->
+<!--                    android:hint="text"-->
+<!--                    android:visibility="visible" />-->
+
+            </FrameLayout>
+
+
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout
