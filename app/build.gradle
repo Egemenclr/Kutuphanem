@@ -8,11 +8,16 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
         applicationId "com.egemeninceler.kutuphanem"
         minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -71,6 +76,11 @@ dependencies {
 
 
     implementation "androidx.cardview:cardview:1.0.0"
-    
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.android.support:multidex:1.0.3'
+
 
 }

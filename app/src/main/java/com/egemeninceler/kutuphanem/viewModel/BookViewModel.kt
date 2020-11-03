@@ -22,8 +22,6 @@ class BookViewModel(application: Application) : AndroidViewModel(application) {
         repository = BookRepository(dao)
         allBooks = repository.allBooks
 
-        filteredBooks = allBooks
-
 
     }
 

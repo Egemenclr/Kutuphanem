@@ -13,16 +13,23 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.egemeninceler.kutuphanem.R
 import com.egemeninceler.kutuphanem.data.local.entity.Book
+import com.egemeninceler.kutuphanem.model.SearchResult
+import com.egemeninceler.kutuphanem.network.ApiClient
+import com.egemeninceler.kutuphanem.network.ISBNService
 import com.egemeninceler.kutuphanem.viewModel.BookViewModel
 import kotlinx.android.synthetic.main.activity_add_new_book.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddNewBookActivity : AppCompatActivity() {
 
@@ -32,6 +39,9 @@ class AddNewBookActivity : AppCompatActivity() {
     lateinit var bookViewModel: BookViewModel
     var oldBook: Book? = null
     var newBook = Book("", IMAGE_URI)
+    lateinit var isbnService: ISBNService
+    lateinit var bookInfo: SearchResult
+
 
     @SuppressLint("WrongThread")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,8 +49,10 @@ class AddNewBookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_new_book)
 
-        val textView = findViewById<AutoCompleteTextView>(R.id.newBookName)
+        val textView = findViewById<AutoCompleteTextView>(R.id.edt_name)
         val countries: Array<out String> = resources.getStringArray(R.array.countries_array)
+        isbnService = ApiClient.getClient().create(ISBNService::class.java)
+
 
         ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, countries).also { adapter ->
             textView.setAdapter(adapter)
@@ -85,7 +97,7 @@ class AddNewBookActivity : AppCompatActivity() {
         newBookSave.setOnClickListener {
             val replyIntent = Intent()
             if (bookID != -1) {
-                newBook.name = newBookName.text.toString()
+                newBook.name = edt_name.text.toString()
                 newBook.pathImage = IMAGE_URI
                 GlobalScope.launch {
                     if ((newBook.name != oldBook!!.name) && (newBook.pathImage != oldBook!!.pathImage))
@@ -98,10 +110,10 @@ class AddNewBookActivity : AppCompatActivity() {
                 }
             }
 
-            if (TextUtils.isEmpty(newBookName.text)) {
+            if (TextUtils.isEmpty(edt_name.text)) {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
-                val word = newBookName.text.toString()
+                val word = edt_name.text.toString()
                 val book = Book(word, IMAGE_URI)
                 replyIntent.putExtra(BOOK_NAME, book)
                 //replyIntent.putExtra("imageUri", IMAGE_URI)
@@ -109,6 +121,29 @@ class AddNewBookActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK, replyIntent)
             }
             finish()
+        }
+
+        newBookISBN.setOnClickListener {
+            val isbn = edt_ISBN.text
+            var result = isbnService.resultGet(isbn.toString())
+
+            result.enqueue(object : Callback<SearchResult> {
+                override fun onResponse(
+                    call: Call<SearchResult>,
+                    response: Response<SearchResult>
+                ) {
+                    if (response.isSuccessful) {
+                        bookInfo = response.body()!!
+                    }
+                }
+
+                override fun onFailure(call: Call<SearchResult>, t: Throwable) {
+                    Toast.makeText(applicationContext, t.message.toString(), Toast.LENGTH_LONG)
+                        .show()
+                }
+
+
+            })
         }
     }
 
@@ -159,7 +194,7 @@ class AddNewBookActivity : AppCompatActivity() {
     }
 
     fun change() {
-        if (IMAGE_URI != null && IMAGE_URI!= Uri.parse("")) {
+        if (IMAGE_URI != null && IMAGE_URI != Uri.parse("")) {
 
             if (Build.VERSION.SDK_INT >= 28) {
                 val source = ImageDecoder.createSource(contentResolver, IMAGE_URI!!)
@@ -173,6 +208,6 @@ class AddNewBookActivity : AppCompatActivity() {
 
         }
         Log.e("oldBook", "${oldBook?.name}, ${oldBook?.pathImage}")
-        newBookName.setText(oldBook?.name)
+        edt_name.setText(oldBook?.name)
     }
 }
