@@ -12,6 +12,7 @@ import com.egemeninceler.kutuphanem.data.repository.BookRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 class BookViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: BookRepository
 
@@ -42,5 +43,6 @@ class BookViewModel(application: Application) : AndroidViewModel(application) {
     suspend fun deleteBook(uuid: Int) {
         repository.deleteBook(uuid)
     }
+
 
 }

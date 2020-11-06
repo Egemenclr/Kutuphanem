@@ -32,6 +32,7 @@ class BookFragmentViewHolder(container: ViewGroup) : RecyclerView.ViewHolder(
         itemView.txtBookAdapter.text = book.name
         val MIN_INTERVAL = 1000
         var lastEventTime = System.currentTimeMillis()
+
         itemView.setOnClickListener {
 
             val eventTime = System.currentTimeMillis()

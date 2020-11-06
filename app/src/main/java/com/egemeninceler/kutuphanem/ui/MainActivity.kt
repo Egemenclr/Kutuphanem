@@ -1,5 +1,6 @@
 package com.egemeninceler.kutuphanem.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             override fun onMenuItemClick(item: MenuItem): Boolean {
                 return when (item.itemId) {
                     R.id.menu_search -> {
+                        startActivity(Intent(this@MainActivity, SearchBookActivity::class.java))
                         true
                     }
                     else -> false
