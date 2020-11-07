@@ -1,5 +1,9 @@
-package com.egemeninceler.kutuphanem.model
+package com.egemeninceler.kutuphanem.model.seachBookModel
 
+
+/**
+ * SEARCHBOOK RESPONSE
+ */
 data class ResponseBookModel(
     val name: String,
     val url: String,

@@ -1,4 +1,4 @@
-package com.egemeninceler.kutuphanem.model
+package com.egemeninceler.kutuphanem.model.newBookModel
 
 import com.google.gson.annotations.SerializedName
 

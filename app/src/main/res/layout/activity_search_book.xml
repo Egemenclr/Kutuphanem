@@ -27,6 +27,19 @@
             >
         </ImageButton>
     </LinearLayout>
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Popüler Kitaplar"
+        android:textStyle="bold"
+        android:padding="6dp"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchRecyclerview"

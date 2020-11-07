@@ -1,6 +1,9 @@
-package com.egemeninceler.kutuphanem.model
+package com.egemeninceler.kutuphanem.model.seachBookModel
 
+import com.egemeninceler.kutuphanem.model.seachBookModel.ResponseBookModel
 import com.google.gson.annotations.SerializedName
+
+
 
 data class SearchResult(
     @SerializedName("success")

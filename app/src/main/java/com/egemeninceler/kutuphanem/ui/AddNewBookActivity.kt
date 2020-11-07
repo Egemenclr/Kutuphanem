@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.egemeninceler.kutuphanem.R
 import com.egemeninceler.kutuphanem.data.local.entity.Book
-import com.egemeninceler.kutuphanem.model.SearchResult
+import com.egemeninceler.kutuphanem.model.seachBookModel.SearchResult
 import com.egemeninceler.kutuphanem.network.ApiClient
 import com.egemeninceler.kutuphanem.network.ISBNService
 import com.egemeninceler.kutuphanem.viewModel.BookViewModel

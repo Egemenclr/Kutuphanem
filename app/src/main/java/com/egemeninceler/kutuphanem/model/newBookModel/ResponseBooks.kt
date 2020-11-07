@@ -1,5 +1,10 @@
-package com.egemeninceler.kutuphanem.model
+package com.egemeninceler.kutuphanem.model.newBookModel
 
+
+/**
+ * NEWBOOK RESPONSE
+
+ */
 data class ResponseBooks(
     val url: String,
     val indirim: String,

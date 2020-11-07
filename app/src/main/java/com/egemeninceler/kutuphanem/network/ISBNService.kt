@@ -1,8 +1,8 @@
 package com.egemeninceler.kutuphanem.network
 
 
-import com.egemeninceler.kutuphanem.model.AllBooksResponse
-import com.egemeninceler.kutuphanem.model.SearchResult
+import com.egemeninceler.kutuphanem.model.newBookModel.AllBooksResponse
+import com.egemeninceler.kutuphanem.model.seachBookModel.SearchResult
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
