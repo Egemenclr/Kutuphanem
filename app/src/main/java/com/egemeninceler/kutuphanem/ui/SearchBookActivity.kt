@@ -59,5 +59,12 @@ class SearchBookActivity : AppCompatActivity() {
 
         })
 
+        btn_search.setOnClickListener {
+            /*
+            kitap arama eklenecek
+            enqueue
+             */
+        }
+
     }
 }
