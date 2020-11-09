@@ -24,4 +24,5 @@ class SearchBookViewHolder(container: ViewGroup) :
 
         itemView.txt_searchbook.text = book
     }
+
 }

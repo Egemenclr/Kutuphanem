@@ -22,6 +22,7 @@ class BookFragmentAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookFragmentViewHolder {
+        println("*** $viewType")
         return BookFragmentViewHolder(parent)
     }
 

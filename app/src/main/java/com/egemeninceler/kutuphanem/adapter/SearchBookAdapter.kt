@@ -15,5 +15,4 @@ class SearchBookAdapter(private val bookList: ArrayList<String>) :
     }
 
     override fun getItemCount(): Int = bookList.size
-
 }

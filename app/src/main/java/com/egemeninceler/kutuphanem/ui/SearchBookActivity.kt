@@ -6,9 +6,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.egemeninceler.kutuphanem.R
 import com.egemeninceler.kutuphanem.adapter.SearchBookAdapter
+import com.egemeninceler.kutuphanem.adapter.SearchBookResAdapter
 import com.egemeninceler.kutuphanem.model.newBookModel.AllBooksResponse
+import com.egemeninceler.kutuphanem.model.seachBookModel.SearchResult
 import com.egemeninceler.kutuphanem.network.ApiClient
 import com.egemeninceler.kutuphanem.network.ISBNService
 import kotlinx.android.synthetic.main.activity_search_book.*
@@ -60,10 +63,38 @@ class SearchBookActivity : AppCompatActivity() {
         })
 
         btn_search.setOnClickListener {
-            /*
-            kitap arama eklenecek
-            enqueue
-             */
+            progress_circular.visibility = View.VISIBLE
+            isbnService.resultGet(edt_searchbook.text.toString())
+                .enqueue(object : Callback<SearchResult> {
+                    override fun onResponse(
+                        call: Call<SearchResult>,
+                        response: Response<SearchResult>
+                    ) {
+                        if (response.isSuccessful) {
+                            val searchBook = response.body()!!.result
+                            println("** $searchBook")
+
+                            val adapter2 = SearchBookResAdapter(searchBook)
+
+                            StaggeredGridLayoutManager(
+                                3,
+                                StaggeredGridLayoutManager.VERTICAL
+                            ).apply {
+                                searchRecyclerview.layoutManager = this
+                            }
+                            searchRecyclerview.adapter = adapter2
+
+                            progress_circular.visibility = View.GONE
+                            txt_search_popular.visibility = View.GONE
+                        }
+                    }
+
+                    override fun onFailure(call: Call<SearchResult>, t: Throwable) {
+                        Toast.makeText(applicationContext, t.localizedMessage, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                })
         }
 
     }
