@@ -22,7 +22,6 @@ class BookFragmentAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookFragmentViewHolder {
-        println("*** $viewType")
         return BookFragmentViewHolder(parent)
     }
 
@@ -42,8 +41,8 @@ class BookFragmentAdapter(
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                if (charSearch.isEmpty()) {
-                    filteredList = bookList
+                filteredList = if (charSearch.isEmpty()) {
+                    bookList
                 } else {
                     var resultList = ArrayList<Book>()
                     for (row in bookList) {
@@ -53,7 +52,7 @@ class BookFragmentAdapter(
                             resultList.add(row)
                         }
                     }
-                    filteredList = resultList
+                    resultList
                 }
                 val filterResults = FilterResults()
                 filterResults.values = filteredList

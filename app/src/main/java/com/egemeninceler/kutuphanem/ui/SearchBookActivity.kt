@@ -45,7 +45,9 @@ class SearchBookActivity : AppCompatActivity() {
 
                     Thread.sleep(100L)
 
-                    val adapter = SearchBookAdapter(titleOfBooks)
+                    val adapter = SearchBookAdapter(titleOfBooks) {
+                        Toast.makeText(applicationContext, "helü", Toast.LENGTH_SHORT).show()
+                    }
                     searchRecyclerview.layoutManager =
                         LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
                     searchRecyclerview.adapter = adapter
@@ -74,7 +76,11 @@ class SearchBookActivity : AppCompatActivity() {
                             val searchBook = response.body()!!.result
                             println("** $searchBook")
 
-                            val adapter2 = SearchBookResAdapter(searchBook)
+                            val adapter2 = SearchBookResAdapter(searchBook) {
+                                println("*** ${it.url}")
+                                Toast.makeText(applicationContext, "helü}", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
 
                             StaggeredGridLayoutManager(
                                 3,

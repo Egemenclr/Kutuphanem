@@ -14,7 +14,7 @@ class SearchBookViewHolder(container: ViewGroup) :
             false
         )
     ) {
-    fun bind(book: String) {
+    fun bind(book: String, setOnClickListener: () -> Unit) {
 //        Log.e("SearchBookViewHolder", "${book.pathImage!!.path}")
 //        Glide.with(itemView.context)
 //            .load(book.pathImage)
@@ -23,6 +23,10 @@ class SearchBookViewHolder(container: ViewGroup) :
 //            .into(itemView.imgBook)
 
         itemView.txt_searchbook.text = book
+
+        itemView.setOnClickListener {
+            setOnClickListener()
+        }
     }
 
 }

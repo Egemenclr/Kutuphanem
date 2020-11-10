@@ -13,7 +13,7 @@ class SearchBookResViewHolder(container: ViewGroup) :
         LayoutInflater.from(container.context)
             .inflate(R.layout.adapter_item_book, container, false)
     ) {
-    fun bind(resBook: ResponseBookModel) {
+    fun bind(resBook: ResponseBookModel, setOnClickListener: (book: ResponseBookModel) -> Unit) {
         Glide.with(itemView.context)
             .load(resBook.img)
             //.apply(RequestOptions().override(120, 120))
@@ -23,6 +23,12 @@ class SearchBookResViewHolder(container: ViewGroup) :
 //        itemView.txtBookAdapter.text = resBook.name
         itemView.txtBookAdapter.visibility = ViewGroup.GONE
 
+
+        itemView.setOnClickListener {
+            setOnClickListener(resBook)
+
+        }
     }
+
 
 }
