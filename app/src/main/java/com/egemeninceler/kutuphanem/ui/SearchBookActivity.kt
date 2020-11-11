@@ -1,9 +1,12 @@
 package com.egemeninceler.kutuphanem.ui
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -21,14 +24,10 @@ import retrofit2.Response
 
 class SearchBookActivity : AppCompatActivity() {
     lateinit var isbnService: ISBNService
-    var titleOfBooks = arrayListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_book)
-
-
-
 
         isbnService = ApiClient.getClient().create(ISBNService::class.java)
         isbnService.getAllBooks().enqueue(object : Callback<AllBooksResponse> {
@@ -39,22 +38,24 @@ class SearchBookActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val res: AllBooksResponse = response.body()!!
                     val listOfBooks = res.result
-                    for (i in listOfBooks) {
-                        titleOfBooks.add(i.title)
-                    }
 
                     Thread.sleep(100L)
 
-                    val adapter = SearchBookAdapter(titleOfBooks) {
-                        Toast.makeText(applicationContext, "helü", Toast.LENGTH_SHORT).show()
+                    val adapter = SearchBookAdapter(listOfBooks) {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it)))
+
                     }
                     searchRecyclerview.layoutManager =
                         LinearLayoutManager(applicationContext, RecyclerView.VERTICAL, false)
+                    searchRecyclerview.addItemDecoration(
+                        DividerItemDecoration(
+                            searchRecyclerview.context,
+                            DividerItemDecoration.VERTICAL
+                        )
+                    )
                     searchRecyclerview.adapter = adapter
-
                     progress_circular.visibility = View.GONE
-                    println("*** $listOfBooks")
-                    println("*** $titleOfBooks")
+
                 }
             }
 
@@ -74,12 +75,9 @@ class SearchBookActivity : AppCompatActivity() {
                     ) {
                         if (response.isSuccessful) {
                             val searchBook = response.body()!!.result
-                            println("** $searchBook")
-
                             val adapter2 = SearchBookResAdapter(searchBook) {
-                                println("*** ${it.url}")
-                                Toast.makeText(applicationContext, "helü}", Toast.LENGTH_SHORT)
-                                    .show()
+                                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.url)))
+
                             }
 
                             StaggeredGridLayoutManager(

@@ -6,7 +6,7 @@
         android:id="@+id/menu_search"
 
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        android:title="Search" />
+        android:title="Ara" />
 </menu>
     <!--        app:showAsAction="ifRoom"-->
 <!--    android:icon="@drawable/ic_search_toolbar"-->

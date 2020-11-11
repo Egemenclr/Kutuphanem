@@ -2,11 +2,12 @@ package com.egemeninceler.kutuphanem.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.egemeninceler.kutuphanem.model.newBookModel.ResponseBooks
 
 
 class SearchBookAdapter(
-    private val bookList: ArrayList<String>,
-    private val setOnClickListener: () -> Unit
+    private val bookList: List<ResponseBooks>,
+    private val setOnClickListener: (url: String) -> Unit
 ) :
     RecyclerView.Adapter<SearchBookViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchBookViewHolder {

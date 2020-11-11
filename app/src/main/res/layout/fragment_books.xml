@@ -23,7 +23,7 @@
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
         android:contentDescription="add book"
-        android:src="@drawable/img_14936"
+        android:src="@drawable/add_book"
         android:scaleType="center"
         app:fabCustomSize="64dp"
         app:maxImageSize="48dp"

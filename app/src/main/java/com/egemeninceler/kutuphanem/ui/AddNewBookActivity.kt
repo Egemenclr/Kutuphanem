@@ -13,23 +13,18 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.egemeninceler.kutuphanem.R
 import com.egemeninceler.kutuphanem.data.local.entity.Book
-import com.egemeninceler.kutuphanem.model.seachBookModel.SearchResult
 import com.egemeninceler.kutuphanem.network.ApiClient
 import com.egemeninceler.kutuphanem.network.ISBNService
 import com.egemeninceler.kutuphanem.viewModel.BookViewModel
 import kotlinx.android.synthetic.main.activity_add_new_book.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class AddNewBookActivity : AppCompatActivity() {
 
@@ -40,7 +35,7 @@ class AddNewBookActivity : AppCompatActivity() {
     var oldBook: Book? = null
     var newBook = Book("", IMAGE_URI)
     lateinit var isbnService: ISBNService
-    lateinit var bookInfo: SearchResult
+//    lateinit var bookInfo: SearchResult
 
 
     @SuppressLint("WrongThread")
@@ -123,28 +118,28 @@ class AddNewBookActivity : AppCompatActivity() {
             finish()
         }
 
-        newBookISBN.setOnClickListener {
-            val isbn = edt_ISBN.text
-            var result = isbnService.resultGet(isbn.toString())
-
-            result.enqueue(object : Callback<SearchResult> {
-                override fun onResponse(
-                    call: Call<SearchResult>,
-                    response: Response<SearchResult>
-                ) {
-                    if (response.isSuccessful) {
-                        bookInfo = response.body()!!
-                    }
-                }
-
-                override fun onFailure(call: Call<SearchResult>, t: Throwable) {
-                    Toast.makeText(applicationContext, t.message.toString(), Toast.LENGTH_LONG)
-                        .show()
-                }
-
-
-            })
-        }
+//        newBookISBN.setOnClickListener {
+//            val isbn = edt_ISBN.text
+//            var result = isbnService.resultGet(isbn.toString())
+//
+//            result.enqueue(object : Callback<SearchResult> {
+//                override fun onResponse(
+//                    call: Call<SearchResult>,
+//                    response: Response<SearchResult>
+//                ) {
+//                    if (response.isSuccessful) {
+//                        bookInfo = response.body()!!
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<SearchResult>, t: Throwable) {
+//                    Toast.makeText(applicationContext, t.message.toString(), Toast.LENGTH_LONG)
+//                        .show()
+//                }
+//
+//
+//            })
+//        }
     }
 
     override fun onStart() {

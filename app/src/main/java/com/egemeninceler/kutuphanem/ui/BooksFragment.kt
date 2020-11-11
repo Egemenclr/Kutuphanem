@@ -7,7 +7,8 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.animation.OvershootInterpolator
+import android.view.animation.ScaleAnimation
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -34,8 +35,6 @@ class BooksFragment : Fragment() {
         startActivity(intent)
 
     }, {
-        Toast.makeText(context, "Hellllü", Toast.LENGTH_SHORT).show()
-
 
         val popUpClass = PopUpClass()
         popUpClass.showPopUpWindow(view!!, it.uuid, this)
@@ -53,9 +52,8 @@ class BooksFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
-        //recyclerBook.layoutManager = GridLayoutManager(view.context, 3)
+
         StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL).apply {
             recyclerBook.layoutManager = this
 
@@ -71,20 +69,17 @@ class BooksFragment : Fragment() {
             }
         })
 
-
-        val MIN_INTERVAL = 1000
-        var lastEventTime = System.currentTimeMillis()
+        val anim = ScaleAnimation(0F, 1F, 0F, 1F)
+        anim.fillBefore = true
+        anim.fillAfter = true
+        anim.isFillEnabled = true
+        anim.duration = 50
+        anim.interpolator = OvershootInterpolator()
         addNewBook.setOnClickListener {
             val intent = Intent(activity, AddNewBookActivity::class.java)
-            //intent.putExtra("where","new")
 
-
-            val eventTime = System.currentTimeMillis()
-            if (eventTime - lastEventTime > MIN_INTERVAL) {
-                lastEventTime = eventTime
-                startActivityForResult(intent, requestCodeForResult)
-
-            }
+            addNewBook.startAnimation(anim)
+            startActivityForResult(intent, requestCodeForResult)
         }
     }
 
@@ -97,8 +92,6 @@ class BooksFragment : Fragment() {
                 wordViewModel.insert(book!!)
             }
 
-        } else {
-            Toast.makeText(activity, "damnt", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -28,7 +28,7 @@
             android:id="@+id/edt_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title..."
+            android:hint="Kitap ismi..."
             android:padding="16dp"
             android:text="" />
 
@@ -36,30 +36,17 @@
             android:id="@+id/edt_ISBN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ISBN..."
+            android:hint="Yazar..."
             android:padding="16dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+        <Button
+            android:id="@+id/newBookSave"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/newBookISBN"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:padding="8dp"
-                android:text="ara" />
-            <Button
-                android:id="@+id/newBookSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:padding="8dp"
-                android:text="kaydet" />
-
-        </LinearLayout>
+            android:layout_gravity="end"
+            android:padding="8dp"
+            android:text="kaydet" />
 
 
     </LinearLayout>

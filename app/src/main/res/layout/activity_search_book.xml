@@ -1,57 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SearchBookActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.SearchBookActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp"
-        >
+        android:padding="8dp">
 
 
         <EditText
             android:id="@+id/edt_searchbook"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/btn_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:text="ara"
-
-            >
-        </Button>
+            android:text="ara" />
     </LinearLayout>
+
     <ProgressBar
         android:id="@+id/progress_circular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
+        android:layout_gravity="center" />
+
     <TextView
         android:id="@+id/txt_search_popular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Popüler Kitaplar"
-        android:textStyle="bold"
         android:padding="6dp"
-        />
+        android:text="Popüler Kitaplar"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchRecyclerview"
-        android:padding="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:padding="8dp" />
+
 
 </LinearLayout>
