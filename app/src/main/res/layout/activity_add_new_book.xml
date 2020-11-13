@@ -7,9 +7,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@drawable/main_header_selector"
+        >
 
         <ImageView
             android:id="@+id/newBookImg"
@@ -32,13 +34,6 @@
             android:padding="16dp"
             android:text="" />
 
-        <EditText
-            android:id="@+id/edt_ISBN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Yazar..."
-            android:padding="16dp" />
-
 
         <Button
             android:id="@+id/newBookSave"
@@ -46,7 +41,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:padding="8dp"
-            android:text="kaydet" />
+            android:text="kaydet"
+            android:theme="@style/AppTheme.Button"
+
+
+            />
 
 
     </LinearLayout>

@@ -33,6 +33,7 @@ class AddNewBookActivity : AppCompatActivity() {
     private var IMAGE_URI: Uri? = null
     lateinit var bookViewModel: BookViewModel
     var oldBook: Book? = null
+
     var newBook = Book("", IMAGE_URI)
     lateinit var isbnService: ISBNService
 //    lateinit var bookInfo: SearchResult

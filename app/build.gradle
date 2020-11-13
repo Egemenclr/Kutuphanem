@@ -82,5 +82,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.android.support:multidex:1.0.3'
 
+    implementation project(':spotify-app-remote')
+    implementation "com.google.code.gson:gson:2.8.6"
+
 
 }
