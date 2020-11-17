@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.egemeninceler.kutuphanem.enums.FragmentName
 import com.egemeninceler.kutuphanem.model.FragmentModel
 import com.egemeninceler.kutuphanem.ui.BooksFragment
-import com.egemeninceler.kutuphanem.ui.silinecekFragment
+import com.egemeninceler.kutuphanem.ui.MusicFragment
 
 fun <T> AppCompatActivity.extStartActivity(cls: Class<T>) {
     val intent = Intent(this, cls)
@@ -16,7 +16,7 @@ fun getFragmentList(): ArrayList<FragmentModel> {
     val fragmentList = ArrayList<FragmentModel>()
 
     val booksFragment = BooksFragment()
-    val booksFragment2 = silinecekFragment()
+    val booksFragment2 = MusicFragment()
 
     val fragmentModel = FragmentModel(FragmentName.KUTUPHANEM.toString(), booksFragment)
     val fragmentModel3 =
